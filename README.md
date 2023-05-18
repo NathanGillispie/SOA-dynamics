@@ -1,3 +1,4 @@
-#SOA-dynamics
+# SOA-dynamics
 
-Molecular Dynamics Simulation of SOA
+Molecular Dynamics Simulation of SOAs. 
+Will explain what each script does later.
