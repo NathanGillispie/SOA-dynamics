@@ -1,0 +1,43 @@
+source leaprc.tip3p
+
+loadAmberParams frcmod.pol3
+loadAmberParams frcmod.so2
+
+addAtomTypes { { "S" "S" "sp3" } { "OS" "O" "sp2" } }
+
+pdb = loadpdb water_solvated.pdb
+
+s = createAtom S S 0
+o1 = createAtom O1 OS 0
+o2 = createAtom O2 OS 0
+
+set s  element S
+set o1 element O
+set o2 element O
+
+r = createResidue SO2
+add r s
+add r o1
+add r o2
+
+bond o1 s
+bond o2 s
+
+add pdb r
+
+set pdb.1001 restype solvent
+set pdb.1001 imagingAtom pdb.301.S
+
+zMatrix pdb { { O1 S 1.431 } { O2 S O1 1.431 119. } }
+
+setbox pdb centers
+set pdb box {31.077, 31.077, 150.}
+
+#default: 39.60
+
+translate pdb {0, 0, 0}
+translate pdb.1001 {15.539, 15.539, 74.9}
+
+saveAmberParm pdb water_solvated.prmtop water_solvated.inpcrd
+
+quit

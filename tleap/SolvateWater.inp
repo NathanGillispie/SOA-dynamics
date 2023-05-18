@@ -1,0 +1,12 @@
+tolerance 3.6
+output water_solvated.pdb
+filetype pdb
+#
+#water
+#
+structure ./molecules/water.pdb
+	number 1000
+	inside box 0 0 0 31.077 31.077 31.077
+end structure
+
+
