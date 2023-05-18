@@ -1,4 +1,4 @@
-%VERSION  VERSION_STAMP = V0001.000  DATE = 05/15/23  15:06:43                  
+%VERSION  VERSION_STAMP = V0001.000  DATE = 05/18/23  15:39:53                  
 %FLAG TITLE                                                                     
 %FORMAT(20a4)                                                                   
 default_name                                                                    
@@ -160,7 +160,7 @@ H1  H2  O   H1  H2  O   H1  H2  O   H1  H2  O   H1  H2  O   H1  H2  O   H1  H2
 O   H1  H2  O   H1  H2  O   H1  H2  O   H1  H2  O   H1  H2  O   H1  H2  O   H1  
 H2  O   H1  H2  O   H1  H2  O   H1  H2  O   H1  H2  O   H1  H2  O   H1  H2  O   
 H1  H2  O   H1  H2  O   H1  H2  O   H1  H2  O   H1  H2  O   H1  H2  O   H1  H2  
-S   O1  O2  
+O1  O2  S   
 %FLAG CHARGE                                                                    
 %FORMAT(5E16.8)                                                                 
  -1.51973982E+01  7.59869910E+00  7.59869910E+00 -1.51973982E+01  7.59869910E+00
@@ -1066,7 +1066,7 @@ S   O1  O2
        8       1       1       8       1       1       8       1       1       8
        1       1       8       1       1       8       1       1       8       1
        1       8       1       1       8       1       1       8       1       1
-      16       8       8
+       8       8      16
 %FLAG MASS                                                                      
 %FORMAT(5E16.8)                                                                 
   1.60000000E+01  1.00800000E+00  1.00800000E+00  1.60000000E+01  1.00800000E+00
@@ -1669,7 +1669,7 @@ S   O1  O2
   1.60000000E+01  1.00800000E+00  1.00800000E+00  1.60000000E+01  1.00800000E+00
   1.00800000E+00  1.60000000E+01  1.00800000E+00  1.00800000E+00  1.60000000E+01
   1.00800000E+00  1.00800000E+00  1.60000000E+01  1.00800000E+00  1.00800000E+00
-  3.20600000E+01  1.59980000E+01  1.59980000E+01
+  1.59980000E+01  1.59980000E+01  3.20600000E+01
 %FLAG ATOM_TYPE_INDEX                                                           
 %FORMAT(10I8)                                                                   
        1       2       2       1       2       2       1       2       2       1
@@ -1972,7 +1972,7 @@ S   O1  O2
        1       2       2       1       2       2       1       2       2       1
        2       2       1       2       2       1       2       2       1       2
        2       1       2       2       1       2       2       1       2       2
-       3       4       4
+       3       3       4
 %FLAG NUMBER_EXCLUDED_ATOMS                                                     
 %FORMAT(10I8)                                                                   
        2       1       1       2       1       1       2       1       1       2
@@ -2468,12 +2468,12 @@ SO2
   0.00000000E+00  0.00000000E+00  0.00000000E+00  0.00000000E+00
 %FLAG LENNARD_JONES_ACOEF                                                       
 %FORMAT(5E16.8)                                                                 
-  7.29391663E+05  0.00000000E+00  0.00000000E+00  1.77906505E+06  0.00000000E+00
-  4.19430400E+06  5.31349179E+05  0.00000000E+00  1.32911052E+06  3.79876399E+05
+  7.29391663E+05  0.00000000E+00  0.00000000E+00  5.31349179E+05  0.00000000E+00
+  3.79876399E+05  1.77906505E+06  0.00000000E+00  1.32911052E+06  4.19430400E+06
 %FLAG LENNARD_JONES_BCOEF                                                       
 %FORMAT(5E16.8)                                                                 
-  6.74640940E+02  0.00000000E+00  0.00000000E+00  1.18547408E+03  0.00000000E+00
-  2.04800000E+03  6.20234580E+02  0.00000000E+00  1.10369829E+03  5.64885984E+02
+  6.74640940E+02  0.00000000E+00  0.00000000E+00  6.20234580E+02  0.00000000E+00
+  5.64885984E+02  1.18547408E+03  0.00000000E+00  1.10369829E+03  2.04800000E+03
 %FLAG BONDS_INC_HYDROGEN                                                        
 %FORMAT(10I8)                                                                   
        3       6       1       0       3       2       0       6       2      12
@@ -3378,13 +3378,13 @@ SO2
        2    8994    8997       1    8991    8994       2    8991    8997       2
 %FLAG BONDS_WITHOUT_HYDROGEN                                                    
 %FORMAT(10I8)                                                                   
-    9000    9003       3    9000    9006       3
+    9006    9000       3    9006    9003       3
 %FLAG ANGLES_INC_HYDROGEN                                                       
 %FORMAT(10I8)                                                                   
 
 %FLAG ANGLES_WITHOUT_HYDROGEN                                                   
 %FORMAT(10I8)                                                                   
-    9003    9000    9006       1
+    9000    9006    9003       1
 %FLAG DIHEDRALS_INC_HYDROGEN                                                    
 %FORMAT(10I8)                                                                   
 
@@ -3955,7 +3955,7 @@ HW  HW  OW  HW  HW  OW  HW  HW  OW  HW  HW  OW  HW  HW  OW  HW  HW  OW  HW  HW
 OW  HW  HW  OW  HW  HW  OW  HW  HW  OW  HW  HW  OW  HW  HW  OW  HW  HW  OW  HW  
 HW  OW  HW  HW  OW  HW  HW  OW  HW  HW  OW  HW  HW  OW  HW  HW  OW  HW  HW  OW  
 HW  HW  OW  HW  HW  OW  HW  HW  OW  HW  HW  OW  HW  HW  OW  HW  HW  OW  HW  HW  
-S   OS  OS  
+OS  OS  S   
 %FLAG TREE_CHAIN_CLASSIFICATION                                                 
 %FORMAT(20a4)                                                                   
 BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA 

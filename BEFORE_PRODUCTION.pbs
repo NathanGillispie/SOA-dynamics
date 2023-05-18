@@ -1,7 +1,7 @@
 #!/bin/bash
 #PBS -l nodes=1:ppn=8,walltime=48:00:00
-#PBS -o job.out
-#PBS -e job.err
+#PBS -o logs/job.out
+#PBS -e logs/job.err
 echo $PBS_NODEFILE
 NCPU=`wc -l < $PBS_NODEFILE`
 NNODES=`uniq $PBS_NODEFILE | wc -l`
@@ -12,4 +12,5 @@ mpdtrace -l
 mpdringtest 100
 cd $PBS_O_WORKDIR
 mpirun -n ${NCPU} /opt/amber14/bin/pmemd.MPI -O -i md_inputs/minimization.in -o md_outputs/minimization.out -p md_inputs/water_solvated.prmtop -c md_inputs/water_solvated.inpcrd -r checkpoints/minrestart.rst 
-mpirun -n ${NCPU} /opt/amber14/bin/pmemd.MPI -O -i md_inputs/heating.in -o md_outputs/heat.out -p md_inputs/water_solvated.prmtop -c checkpoints/minrestart.rst -r checkpoints/heatrestart.rst -x ptraj/heat.mdcrd 
+mpirun -n ${NCPU} /opt/amber14/bin/pmemd.MPI -O -i md_inputs/heating-NPT.in -o md_outputs/heat-NPT.out -p md_inputs/water_solvated.prmtop -c checkpoints/minrestart.rst -r checkpoints/heatrestart-NPT.rst -x ptraj/heat-NPT.mdcrd 
+mpirun -n ${NCPU} /opt/amber14/bin/pmemd.MPI -O -i md_inputs/heating-NVT.in -o md_outputs/heat-NVT.out -p md_inputs/water_solvated.prmtop -c checkpoints/heatrestart-NPT.rst -r checkpoints/heatrestart.rst -x ptraj/heat.mdcrd 

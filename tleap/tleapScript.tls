@@ -16,9 +16,9 @@ set o1 element O
 set o2 element O
 
 r = createResidue SO2
-add r s
 add r o1
 add r o2
+add r s
 
 bond o1 s
 bond o2 s
@@ -33,11 +33,9 @@ zMatrix pdb { { O1 S 1.431 } { O2 S O1 1.431 119. } }
 setbox pdb centers
 set pdb box {31.077, 31.077, 150.}
 
-#default: 39.60
+translate pdb {0, 0, 75}
+translate pdb.1001 {15.539, 15.539, 59.461}
 
-translate pdb {0, 0, 0}
-translate pdb.1001 {15.539, 15.539, 74.9}
-
-saveAmberParm pdb water_solvated.prmtop water_solvated.inpcrd
+saveAmberParm pdb ../md_inputs/water_solvated.prmtop ../md_inputs/water_solvated.inpcrd
 
 quit

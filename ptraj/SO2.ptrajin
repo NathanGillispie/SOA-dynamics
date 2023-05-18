@@ -1,4 +1,4 @@
-parm md_inputs/water_solvated.prmtop
-trajin ptraj/production.mdcrd
+parm ../md_inputs/water_solvated.prmtop
+trajin heat.mdcrd
 diffusion :SO2 0.05 average
 go

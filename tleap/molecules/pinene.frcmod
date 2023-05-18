@@ -1,0 +1,29 @@
+remark goes here
+MASS
+
+BOND
+
+ANGLE
+cy-c2-c3   62.700     116.520   same as c3-c2-c3
+c2-cy-hc   47.030     110.490   same as c2-c3-hc
+
+DIHE
+cy-cy-c3-c2   1    0.156         0.000           3.000      same as X -c3-c3-X 
+cy-cy-c3-hc   1    0.156         0.000           3.000      same as X -c3-c3-X 
+cy-cy-c2-c2   1    0.000         0.000           2.000      same as X -c2-c3-X 
+cy-cy-c2-c3   1    0.000         0.000           2.000      same as X -c2-c3-X 
+c3-cy-c3-hc   1    0.160         0.000           3.000      same as hc-c3-c3-c3
+c2-c3-cy-hc   1    0.156         0.000           3.000      same as X -c3-c3-X 
+c2-c2-cy-hc   1    0.380       180.000          -3.000      same as hc-c3-c2-c2
+c2-c2-cy-hc   1    1.150         0.000           1.000      same as hc-c3-c2-c2
+c3-c2-cy-hc   1    0.000         0.000           2.000      same as X -c2-c3-X 
+hc-cy-c3-hc   1    0.150         0.000           3.000      same as hc-c3-c3-hc
+
+IMPROPER
+c2-c3-c2-cy         1.1          180.0         2.0          Using default value
+c2-c3-c2-ha         1.1          180.0         2.0          Using default value
+
+NONBON
+
+
+

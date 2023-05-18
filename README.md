@@ -1,2 +1,3 @@
-# SOA-dynamics
-Molecular dynamics simulation of secondary organic aerosols.
+#SOA-dynamics
+
+Molecular Dynamics Simulation of SOA
