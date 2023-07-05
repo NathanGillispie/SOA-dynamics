@@ -1,6 +1,6 @@
-rm logs/*
+rm logs/job.*
 rm ptraj/*.mdcrd
-rm checkpoints/*
+rm checkpoints/*.rst
 rm md_outputs/*.out
 rm logfile
 rm mdinfo

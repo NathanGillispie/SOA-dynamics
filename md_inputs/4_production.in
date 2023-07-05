@@ -1,0 +1,21 @@
+300 K Prod. Run Water default nstlim is 250000
+&cntrl
+imin=0,
+ntb=1,
+iwrap=1,
+irest=1, 
+ntx=5,
+ntxo=2,
+cut=8.0, 
+ntf=1,ntc=1, 
+ntt=1,
+tempi=300.0, temp0=300.0, 
+nstlim=1000000,
+dt=0.001,
+ntpr=50,
+ntwx=50,
+ipol=1,
+/
+&ewald
+indmeth=1,
+/

@@ -1,0 +1,5 @@
+parm ../md_inputs/water_solvated.prmtop
+trajin production.mdcrd
+closestwaters 4 :SO2 center closestout closestwaters.dat
+go
+quit

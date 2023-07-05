@@ -1,0 +1,19 @@
+pol3 water + dihe and angle params
+MASS
+OW 16.0 0.528
+HW 1.008 0.170
+
+BOND
+OW-HW  320.0    1.0000      SPC/E and POL3 water
+HW-HW  553.0    1.6330      SPC/E and POL3 water
+
+DIHE
+X -HW-OW-X 2 0.0 0.0 1.0
+
+ANGLE
+HW-OW-HW 100. 104.52
+HW-HW-OW   0. 127.74
+
+NONBON
+HW          0.6000  0.0157             same as ho
+OW       1.798    0.156      	    
