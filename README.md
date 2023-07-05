@@ -1,6 +1,5 @@
 # SOA-dynamics
 
-<<<<<<< HEAD
 This repo is a backup of the last best working version of my dynamics runs. This particular version contains better documentation, checkpoint files for everything up to production run(s) and a semi-complete script to generate the input files for the runs.
 
 ## Requirements
@@ -22,8 +21,4 @@ Packmol generates the initial configuration of water molecules and tleap adds th
 
 `cd` to the home directory and run `qsub` + the `.pbs` scripts in numerical order. If you need to stop and restart the simulation, run `qstat` to get the PID then `qdel PID` to stop (if it hasn't already). Restart the simulation by running the files with the same number but with "rst" in the name. It is important to remember that between steps 2 and 3, to add the SO2 molecule to the topology and checkpoint files by running `add-SO2.py` from within the checkpoints directory.
 
-The `.out` files are stored in `md_outputs`. The `.mdcrd` coordinate files are stored in `ptraj` and the `.prmtop` files are stored in `md_inputs`. 
-=======
-Molecular Dynamics Simulation of SOAs. 
-Will explain what each script does later.
->>>>>>> f2055bf91edbba3e04c22315f7b4d675479e8325
+The `.out` files are stored in `md_outputs`. The `.mdcrd` coordinate files are stored in `ptraj` and the `.prmtop` files are stored in `md_inputs`.
