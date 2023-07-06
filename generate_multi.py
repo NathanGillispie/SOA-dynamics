@@ -10,6 +10,7 @@ number_of_digits = 2
 checks_dir = "chk_multi"
 trajectories_dir = "ptj_multi"
 pbs_dir = "pbs_multi"
+ptrajin_dir = "ptj_multi/ptrajin"
 queue_file = "MULTI_PROD.sh"
 
 # DIRECTORIES
@@ -17,17 +18,21 @@ queue_file = "MULTI_PROD.sh"
 if (not os.path.exists(checks_dir)):
 	os.mkdir(checks_dir)
 else:
-	print("checks directory exists.")
+	print("Checks directory exists.")
 
 if (not os.path.exists(trajectories_dir)):
 	os.mkdir(trajectories_dir)
 else:
-	print("trajectories directory exists.")
+	print("Trajectories directory exists.")
 
 if (not os.path.exists(pbs_dir)):
 	os.mkdir(pbs_dir)
 else:
-	print("pbs scripts directory exists.")
+	print("Pbs scripts directory exists.")
+if (not os.path.exists(ptrajin_dir)):
+	os.mkdir(ptrajin_dir)
+else:
+	print("Ptrajin directory exists.")
 
 #
 # QUEUE FILE
@@ -98,12 +103,12 @@ for counter in range(number_of_runs):
 		line1 = lines[velocity_line].split(',')
 		line2 = lines[velocity_line + 1].split(',')
 		line3 = lines[velocity_line + 2].split(',')
-		xyS  = string.join(line1[:2], ',') + ','
-		xyO1 = string.join(line2[:2], ',') + ','
-		xyO2 = string.join(line3[:2], ',') + ','
-		lines[velocity_line]     = xyS + velocity_string + ',\n'
-		lines[velocity_line + 1] = xyO1 + velocity_string + ',\n'
-		lines[velocity_line + 2] = xyO2 + velocity_string + ' ;\n'
+		line1[0] = velocity_string
+		line2[0] = velocity_string
+		line3[0] = velocity_string
+		lines[velocity_line]     = string.join(line1,',')
+		lines[velocity_line + 1] = string.join(line2,',')
+		lines[velocity_line + 2] = string.join(line3,',')
 
 	with open(output, 'w') as outfile:
 		outfile.writelines(lines)
@@ -147,3 +152,54 @@ cd $PBS_O_WORKDIR
 		md_out = os.path.join(trajectories_dir, '4_{0}.out'.format(c_string))
 
 		outfile.write("mpirun -n ${{NCPU}} /opt/amber14/bin/sander.MPI -O -i md_inputs/4_production.in -o {md_out} -p md_inputs/water_so2.prmtop -c {chk_in} -r {chk_out} -x {ptraj}".format(md_out=md_out, chk_in=chk_in, chk_out=chk_out, ptraj=ptraj_out))
+
+#
+# PTRAJ SCRIPT
+#
+print("\nPTRAJ SCRIPT...")
+
+ptraj_script = os.path.join(trajectories_dir, "trajectory_analysis.sh")
+generate_ptraj_file = True
+if (os.path.exists(ptraj_script)):
+	input = ""
+	while (input != "y") and (input != "n"):
+		input = raw_input("Ptraj script exists. Would you like to replace it? (y/n)\n")
+	if input == "n":
+		generate_ptraj_file = False
+	else:
+		os.remove(ptraj_script)
+else:
+	print("Ptraj script does not exist. Generating...")
+
+if generate_ptraj_file:
+	with open(ptraj_script, 'w') as outfile:
+		for counter in range(number_of_runs):
+			c_string = str(counter+1).zfill(number_of_digits)
+			i_file = os.path.join("4_{0}.dat ".format(c_string))
+			o_file = os.path.join("4_{0}.txt\n".format(c_string))
+			outfile.write("cpptraj < ptrajin/closestwaters_{0}.ptrajin\n".format(c_string))
+			outfile.write("python retention_closest.py " + i_file + o_file)
+	os.system("chmod +x " + ptraj_script)
+
+#
+# PTRAJIN SCRIPTS
+#
+print("\nPTRAJIN files...")
+
+overwrite_ptrajin_files = False
+for counter in range(number_of_runs):
+	c_string = str(counter+1).zfill(number_of_digits)
+	local_filename = "closestwaters_{0}.ptrajin".format(c_string)
+	filename = os.path.join(ptrajin_dir, local_filename)
+	input = ""
+	if os.path.exists(filename) and (not overwrite_ptrajin_files):
+		while (input != "y") and (input != "n"):
+			input = raw_input("Ptrajin files exist. Would you like to overwrite all ptrajin files? (y/n)\n")
+		if input == 'y':
+			overwrite_ptrajin_files = True
+		else:
+			break
+	with open(filename, 'w') as outfile:
+		outfile.write("parm ../md_inputs/water_so2.prmtop\ntrajin 4_{0}.mdcrd\n".format(c_string))
+		outfile.write("closestwaters 4 :SO2 center closestout 4_{0}.dat\n".format(c_string))
+		outfile.write("go\nquit\n")
